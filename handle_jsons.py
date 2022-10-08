@@ -24,7 +24,7 @@ def getType(value,data):
         return "Map"
     if type(value) is int or float:
         return "int"
-    return "Ali"
+    return "None"
 
 def getJson(path):
     with open(path) as f:
