@@ -1,6 +1,7 @@
 import os
 
 howMany = int(input("How many folders do you want to create?\n"))
+pathToFiles= input(r"Path:(\lib\ui):")
 
 listFolderNames=[]
 currentPath=os.getcwd()
@@ -20,10 +21,17 @@ class %s extends StatelessWidget {
 
 
 def createFolder(folderName):
-    newpath = r'{}\lib\ui\pages\{}'.format(currentPath,folderName) 
-    viewPath= '{}/lib/ui/pages/{}/{}_view.dart'.format(currentPath,folderName,folderName) 
-    if not os.path.exists(newpath):
-        os.makedirs(newpath)
+    isFolderCreate = input("File should be created for '{}'?(y/n):\n".format(folderName))
+    newPath = '{}{}\{}'.format(currentPath,pathToFiles,folderName) 
+    viewPath=""
+    if isFolderCreate =="y" or isFolderCreate=="Y":
+        viewPath= '{}{}\{}\{}_view.dart'.format(currentPath,pathToFiles,folderName,folderName) 
+    else:
+        viewPath= '{}{}\{}_view.dart'.format(currentPath,pathToFiles,folderName) 
+    
+    if not os.path.exists(newPath):
+        if isFolderCreate =="y" or isFolderCreate=="Y":
+            os.makedirs(newPath)
         with open(viewPath, 'w') as f:
             folderNameSplit = folderName.split("_")
             newFolderName=""

@@ -27,7 +27,7 @@ def getType(value,data):
     return "None"
 
 def getJson(path):
-    with open(path) as f:
+    with open(path, encoding="utf8") as f:
         data = json.load(f)
             
         f.close()
@@ -71,7 +71,7 @@ def generateFile(fileName,model):
 
     listOfSubModels=[]
     fileNameTitle="{}{}".format(getPrefixCapitalize(),fileName.title())
-    with open(pathToFolder+"\{}{}.dart".format(getPrefix(),fileName),"w+") as f:
+    with open(pathToFolder+"\{}{}.dart".format(getPrefix(),fileName),"w+" , encoding="utf8") as f:
         f.write(
 '''import 'package:json_annotation/json_annotation.dart';
 
@@ -114,7 +114,7 @@ class %s {
         if listOfSubModels.__len__() >0:
             content = []
 
-            with open(pathToFolder+"\{}{}.dart".format(getPrefix(),fileName),"r") as file:
+            with open(pathToFolder+"\{}{}.dart".format(getPrefix(),fileName),"r", encoding="utf8") as file:
                 content = file.readlines()
 
                 for x in listOfSubModels:
@@ -122,7 +122,7 @@ class %s {
 
                 file.close()
             
-            with open(pathToFolder+"\{}{}.dart".format(getPrefix(),fileName),"w") as file:
+            with open(pathToFolder+"\{}{}.dart".format(getPrefix(),fileName),"w", encoding="utf8") as file:
                 file.writelines(content)
 
                 file.close()
@@ -183,10 +183,10 @@ if isExceptCaught==True:
 
 
 def changeText(fileName,textToReplace,text):
-    with open("{}\lib\models\{}".format(currentPath,fileName), "r") as f:
+    with open("{}\{}".format(pathToFolder,fileName), "r", encoding="utf8") as f:
         old = f.read()
         old = old.replace(textToReplace,text)
-        with open("{}\lib\models\{}".format(currentPath,fileName), 'w') as ff:
+        with open("{}\{}".format(pathToFolder,fileName), 'w', encoding="utf8") as ff:
             ff.write(old)
             ff.close()
         f.close()
