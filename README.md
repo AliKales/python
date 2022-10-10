@@ -1,3 +1,3 @@
 # Some Python Scripts
 
-These scrtips will help you with Flutter
+These scripts will help you with Flutter
